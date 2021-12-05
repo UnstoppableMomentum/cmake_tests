@@ -30,8 +30,41 @@ void read_file (const std::string& file_name) {
     }
 }
 
+void writeJson()
+{
+    std::cout << __PRETTY_FUNCTION__ << ">>>" << std::endl;
+
+    boost::property_tree::ptree root;
+
+    int height = 23;
+
+    root.put("height", height);
+    root.put("some.complex.path", "bonjour");
+    boost::property_tree::write_json(std::cout, root);
+}
+
+void writeJson2()
+{
+    std::cout << __PRETTY_FUNCTION__ << ">>>" << std::endl;
+
+    boost::property_tree::ptree root;
+
+    int height = 23;
+
+    root.put("height", height);
+    root.put("some.complex.path", "bonjour");
+
+    std::stringstream ss;
+    boost::property_tree::write_json(ss, root);
+
+    std::cout << "string stream" << ss.str() << std::endl;
+}
+
 int main(int args, const char * argv[])
 {
     read_file(argv[1]);
+    writeJson();
+    writeJson2();
+
     return 0;
 }
